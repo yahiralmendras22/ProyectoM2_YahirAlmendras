@@ -43,13 +43,35 @@ ProyectoM2-YahirAlmendras/
 ├── README.md
 └── server.js
 ```
-### Descripción de carpetas
+### Descripción de carpetas y archivos
 
-- **config/**: Configuración de la base de datos e inicialización.
-- **controllers/**: Manejan las solicitudes HTTP y las respuestas.
-- **middlewares/**: Validaciones y manejo centralizado de errores.
-- **routes/**: Definen los endpoints de la API.
-- **services/**: Contienen la lógica de negocio y consultas a la base de datos.
-- **sql/**: Scripts SQL para crear y poblar la base de datos.
-- **index.js**: Configuración principal de la aplicación Express.
-- **server.js**: Punto de entrada para iniciar el servidor.
+#### src/config
+- `dbConnect.js`: Configuración y conexión a PostgreSQL.
+- `initDb.js`: Inicialización de la base de datos.
+
+#### src/controllers
+Gestionan las solicitudes HTTP y las respuestas de la API.
+
+#### src/middlewares
+Contienen validaciones y manejo centralizado de errores.
+
+#### src/routes
+Definen los endpoints de la API.
+
+#### src/services
+Implementan la lógica de negocio y las consultas a la base de datos.
+
+#### src/sql
+- `setup.sql`: Creación de tablas y relaciones.
+- `seed.sql`: Datos iniciales de prueba.
+
+#### Archivos raíz
+- `.env`: Variables de entorno locales.
+- `.env.example`: Ejemplo de configuración requerida.
+- `.gitignore`: Archivos y carpetas ignorados por Git.
+- `package.json`: Dependencias y scripts del proyecto.
+- `package-lock.json`: Versiones exactas de dependencias instaladas.
+- `README.md`: Documentación del proyecto.
+- `server.js`: Punto de entrada para iniciar el servidor.
+```
+
