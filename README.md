@@ -74,4 +74,3 @@ Implementan la lógica de negocio y las consultas a la base de datos.
 - `README.md`: Documentación del proyecto.
 - `server.js`: Punto de entrada para iniciar el servidor.
 ```
-
