@@ -11,9 +11,5 @@
     "dev": "nodemon server.js",
     "db:init": "node src/config/initDb.js",
     "test": "echo \"No tests configured\""
-  },
-  "dependencies": {
-    "express": "^5.2.1",
-    "pg": "^8.22.0"
   }
 }

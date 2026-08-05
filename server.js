@@ -1,9 +1,5 @@
-const app = require('./index');
+const app  = require('./src/index.js');
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(
-        `Servidor corriendo en puerto ${PORT}`
-    );
+app.listen(process.env.PORT, () => {
+    console.log(`Server listen on port ${process.env.PORT}`);
 });
