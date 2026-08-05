@@ -25,6 +25,8 @@ async function createAuthor(name, email, bio) {
         [name, email, bio]
     );
     
+    return result.rows[0];
+
 }
 
 
