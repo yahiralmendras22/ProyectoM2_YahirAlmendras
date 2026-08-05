@@ -1,9 +1,17 @@
-const app = require('../server');
+const express = require('express');
 
-const PORT = process.env.PORT || 3000;
+const app = express();
 
-app.listen(PORT, () => {
-    console.log(
-        `Servidor corriendo en puerto ${PORT}`
-    );
+app.use(express.json());
+
+app.get('/', (req, res) => {
+    res.json({
+        message: 'MiniBlog API funcionando'
+    });
 });
+
+const authorsRoutes = require('./src/routes/authorsRoutes');
+
+app.use('/authors', authorsRoutes);
+
+module.exports = app;
