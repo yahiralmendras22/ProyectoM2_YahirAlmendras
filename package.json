@@ -5,10 +5,10 @@
   "license": "MIT",
   "author": "yahir almendras",
   "type": "commonjs",
-  "main": "src/index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
+    "start": "node server.js",
+    "dev": "nodemon server.js",
     "db:init": "node src/config/initDb.js",
     "test": "echo \"No tests configured\""
   },
