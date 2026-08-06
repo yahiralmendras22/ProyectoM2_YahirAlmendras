@@ -1,3 +1,5 @@
+// Error Handler Middleware//
+
 function errorHandler(error, req, res, next) {
     console.error(error);
 
@@ -10,6 +12,12 @@ function errorHandler(error, req, res, next) {
     if (error.code === '23505') {
         return res.status(409).json({
             message: error.userMessage || 'El recurso ya existe'
+        });
+    }
+
+    if (error.code === '23503') {
+        return res.status(409).json({
+            message: error.userMessage || 'Referencia inválida: el recurso relacionado no existe'
         });
     }
 

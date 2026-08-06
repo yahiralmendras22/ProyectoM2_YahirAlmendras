@@ -1,58 +1,51 @@
+// Authors Services //
+
 const { pool } = require('../config/dbConnect');
 
 async function getAllAuthors() {
-    const result = await pool.query(
-        'SELECT * FROM authors ORDER BY id'
+    const { rows } = await pool.query(
+        'SELECT id, name, email, bio, created_at FROM authors ORDER BY id'
     );
-
-    return result.rows;
+    return rows;
 }
 
 async function getAuthorById(id) {
-    const result = await pool.query(
-        'SELECT * FROM authors WHERE id = $1',
+    const { rows } = await pool.query(
+        'SELECT id, name, email, bio, created_at FROM authors WHERE id = $1',
         [id]
     );
-
-    return result.rows[0];
+    return rows[0] || null;
 }
 
-async function createAuthor(name, email, bio) {
-    const result = await pool.query(
+async function createAuthor({ name, email, bio }) {
+    const { rows } = await pool.query(
         `INSERT INTO authors (name, email, bio)
          VALUES ($1, $2, $3)
-         RETURNING *`,
-        [name, email, bio]
+         RETURNING id, name, email, bio, created_at`,
+        [name, email, bio || null]
     );
-    
-    return result.rows[0];
-
+    return rows[0];
 }
 
-
-async function updateAuthor(id, name, email, bio) {
-    const result = await pool.query(
+async function updateAuthor(id, { name, email, bio }) {
+    const { rows } = await pool.query(
         `UPDATE authors
-         SET name = $1,
-             email = $2,
-             bio = $3
+         SET name = $1, email = $2, bio = $3
          WHERE id = $4
-         RETURNING *`,
-        [name, email, bio, id]
+         RETURNING id, name, email, bio, created_at`,
+        [name, email, bio || null, id]
     );
-
-    return result.rows[0];
+    return rows[0] || null;
 }
 
 async function deleteAuthor(id) {
-    const result = await pool.query(
+    const { rows } = await pool.query(
         `DELETE FROM authors
          WHERE id = $1
-         RETURNING *`,
+         RETURNING id, name, email, bio, created_at`,
         [id]
     );
-
-    return result.rows[0];
+    return rows[0] || null;
 }
 
 module.exports = {
@@ -60,5 +53,5 @@ module.exports = {
     getAuthorById,
     createAuthor,
     updateAuthor,
-    deleteAuthor
+    deleteAuthor,
 };
