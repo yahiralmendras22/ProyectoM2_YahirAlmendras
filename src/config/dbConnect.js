@@ -1,5 +1,9 @@
-const { Pool } = require('pg'); 
+const { Pool } = require('pg');
+const { loadEnvFile } = require('node:process');
 
+if (process.env.NODE_ENV !== 'production') {
+    loadEnvFile('.env');
+}
 const configPool = {
     host: process.env.DB_HOST,
     database: process.env.DB_NAME, 
