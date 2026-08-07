@@ -1,6 +1,8 @@
 const { loadEnvFile } = require('node:process');
+const fs = require('node:fs');
 
-if (process.env.NODE_ENV !== 'production') {
+// Verifica si el archivo existe antes de intentar cargarlo
+if (fs.existsSync('.env')) {
     loadEnvFile('.env');
 }
 
