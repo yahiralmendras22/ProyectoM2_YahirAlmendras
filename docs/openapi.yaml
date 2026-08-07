@@ -1,0 +1,409 @@
+openapi: 3.0.3
+info:
+  title: MiniBlog API
+  version: 1.0.0
+  description: API para gestionar autores y posts de un miniblog.
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor local
+
+tags:
+  - name: Authors
+    description: Operaciones sobre autores
+  - name: Posts
+    description: Operaciones sobre posts
+
+paths:
+  /authors:
+    get:
+      summary: Obtener todos los autores
+      tags:
+        - Authors
+      responses:
+        '200':
+          description: Lista de autores obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+
+    post:
+      summary: Crear un autor
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorInput'
+      responses:
+        '201':
+          description: Autor creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: El email ya está asociado a otro autor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /authors/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID del autor
+        schema:
+          type: integer
+          minimum: 1
+
+    get:
+      summary: Obtener un autor por ID
+      tags:
+        - Authors
+      responses:
+        '200':
+          description: Autor encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: ID inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      summary: Actualizar un autor
+      tags:
+        - Authors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorInput'
+      responses:
+        '200':
+          description: Autor actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Datos o ID inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: El email ya está asociado a otro autor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Eliminar un autor
+      tags:
+        - Authors
+      responses:
+        '200':
+          description: Autor eliminado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '400':
+          description: ID inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Autor no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /posts:
+    get:
+      summary: Obtener todos los posts
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Lista de posts obtenida correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+
+    post:
+      summary: Crear un post
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '201':
+          description: Post creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: El autor indicado no existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /posts/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: ID del post
+        schema:
+          type: integer
+          minimum: 1
+
+    get:
+      summary: Obtener un post por ID
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Post encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: ID inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      summary: Actualizar un post
+      tags:
+        - Posts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostInput'
+      responses:
+        '200':
+          description: Post actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+        '400':
+          description: Datos o ID inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: El autor indicado no existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      summary: Eliminar un post
+      tags:
+        - Posts
+      responses:
+        '200':
+          description: Post eliminado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessage'
+        '400':
+          description: ID inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Post no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Ana Pérez
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        bio:
+          type: string
+          nullable: true
+          example: Escritora mexicana
+        created_at:
+          type: string
+          format: date-time
+          example: 2024-01-15T10:30:00.000Z
+      required:
+        - id
+        - name
+        - email
+        - created_at
+
+    AuthorInput:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Ana Pérez
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        bio:
+          type: string
+          nullable: true
+          example: Escritora mexicana
+      required:
+        - name
+        - email
+
+    Post:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: Mi primer post
+        content:
+          type: string
+          example: Contenido del post
+        author_id:
+          type: integer
+          example: 1
+        published:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+          example: 2024-01-15T10:30:00.000Z
+      required:
+        - id
+        - title
+        - content
+        - author_id
+        - published
+        - created_at
+
+    PostInput:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Mi primer post
+        content:
+          type: string
+          example: Contenido del post
+        author_id:
+          type: integer
+          example: 1
+        published:
+          type: boolean
+          example: true
+      required:
+        - title
+        - content
+        - author_id
+
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Error interno del servidor
+      required:
+        - message
+
+    SuccessMessage:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Autor eliminado correctamente
+      required:
+        - message

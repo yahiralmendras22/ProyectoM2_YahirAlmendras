@@ -1,10 +1,22 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+
 const app = express();
+
+// Swagger
+const swaggerDocument = YAML.load('./docs/openapi.yaml');
+
+app.use(
+    '/api-docs',
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocument)
+);
 
 // Middleware para entender JSON
 app.use(express.json());
 
-// RUTAS CORREGIDAS (Sin el "./src/")
+// Rutas
 const authorsRouter = require('./routes/authorsRoutes');
 const postsRouter = require('./routes/postsRoutes');
 
@@ -12,10 +24,8 @@ const postsRouter = require('./routes/postsRoutes');
 app.use('/authors', authorsRouter);
 app.use('/posts', postsRouter);
 
-
+// Middleware de manejo de errores
 const errorHandler = require('./middlewares/errorHandler');
-
 app.use(errorHandler);
-
 
 module.exports = app;
