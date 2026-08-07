@@ -7,7 +7,8 @@ servers:
   - url: https://railway.app
     description: Servidor de Producción (Railway)
   - url: http://localhost:3000
-    description: Servidor Local
+    description: Servidor de Desarrollo Local
+
 
 tags:
   - name: Authors
