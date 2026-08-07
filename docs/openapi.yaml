@@ -9,7 +9,6 @@ servers:
   - url: http://localhost:3000
     description: Servidor de Desarrollo Local
 
-
 tags:
   - name: Authors
     description: Operaciones sobre autores
