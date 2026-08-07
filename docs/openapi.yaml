@@ -5,8 +5,10 @@ info:
   description: API para gestionar autores y posts de un miniblog.
 
 servers:
+  - url: https://railway.app
+    description: Servidor de Producción (Railway)
   - url: http://localhost:3000
-    description: Servidor local
+    description: Servidor de Desarrollo Local
 
 tags:
   - name: Authors
