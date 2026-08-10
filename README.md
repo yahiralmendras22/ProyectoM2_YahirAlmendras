@@ -139,10 +139,10 @@ Implementan la lógica de negocio y las consultas a la base de datos.
 
 El proyecto se encuentra alojado y desplegado de manera continua.
 
-- **URL Base de la API:** https://railway.app
+- **URL Base de la API:** https://proyectom2yahiralmendras-production.up.railway.app/api-docs/
 
 ---
 
 ## ✒️ Autor
 
-- **Yahir Almendras** - GitHub: tu_usuario
+- **Yahir Almendras** - GitHub: yahiralmendras22
