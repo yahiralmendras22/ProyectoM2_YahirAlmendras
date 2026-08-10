@@ -1,4 +1,4 @@
-# 🚀 Backend API - [Nombre de tu Proyecto]
+# 🚀 Backend API - [MiniBlog API]
 
 Esta es una API REST desarrollada con Node.js y Express.js, utilizando PostgreSQL como base de datos relacional. La API está completamente documentada de forma interactiva con Swagger UI y se encuentra desplegada en producción.
 
