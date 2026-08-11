@@ -9,6 +9,7 @@ Esta es una API REST desarrollada con Node.js y Express.js, utilizando PostgreSQ
 - **Entorno de ejecución:** Node.js
 - **Framework Web:** Express.js
 - **Base de Datos:** PostgreSQL
+* **Driver de Conexión:** `pg` (Pool con soporte nativo de SSL y manejo de eventos)
 - **Documentación de la API:** Swagger UI
 - **Despliegue:** Railway
 
@@ -47,8 +48,14 @@ DB_NAME=nombre_de_tu_base_de_datos
 # DATABASE_URL=postgres://user:password@host:port/dbname
 ```
 
-### 4. Ejecutar el servidor
-**Modo Desarrollo:**
+### 4. Inicializar la Base de Datos Local
+Antes de correr el servidor, abre tu herramienta de administración de base de datos (ej. **pgAdmin 4**), entra al *Query Tool* de tu BD local y ejecuta:
+1. El contenido de `src/sql/setup.sql` para construir las tablas de autores y publicaciones.
+2. El contenido de `src/sql/seed.sql` para insertar los datos semilla iniciales.
+
+### 5. Ejecutar el servidor
+
+**Modo Desarrollo (con recarga automática):**
 ```bash
 npm run dev
 ```
@@ -57,52 +64,56 @@ npm run dev
 ```bash
 npm start
 ```
-El servidor local correrá normalmente en http://localhost:3000.
+El servidor local correrá normalmente en `http://localhost:3000`.
 
 ---
-
 
 ## Estructura del proyecto
 
 ```text
 ProyectoM2-YahirAlmendras/
 │
+├── docs/
+│   └── openapi.yaml          
+│
 ├── src/
 │   ├── config/
-│   │   ├── dbConnect.js
-│   │   └── initDb.js
+│   │   ├── dbConnect.js      
+│   │   └── initDb.js          
 │   │
 │   ├── controllers/
-│   │   ├── authorsController.js
-│   │   ├── postsController.js
+│   │   ├── authorsController.js 
+│   │   └── postsController.js  
 │   │
 │   ├── middlewares/
-│   │   ├── errorHandler.js
-│   │   └── validateRequest.js
+│   │   ├── errorHandler.js    
+│   │   └── validateRequest.js 
 │   │
 │   ├── routes/
-│   │   ├── authorsRoutes.js
-│   │   ├── postsRoutes.js
+│   │   ├── authorsRoutes.js   
+│   │   └── postsRoutes.js     
 │   │
 │   ├── services/
-│   │   ├── authorsService.js
-│   │   ├── postsService.js
-│   │
+│   │   ├── authorsService.js 
+│   │   └── postsService.js    
 │   ├── sql/
-│   │   ├── setup.sql
-│   │   └── seed.sql
-│   │
-│   └── index.js
+│   │   ├── setup.sql        
+│   │   └── seed.sql         
+│   └── index.js             
 │
-├── .env
-├── .env.example
-├── .gitignore
-├── package.json
-├── package-lock.json
-├── README.md
-└── server.js
+├── .env                      
+├── .env.example              
+├── .gitignore                 
+├── package.json              
+├── package-lock.json           
+├── README.md                 
+└── server.js                  
 ```
+
 ### Descripción de carpetas y archivos
+
+#### docs
+- `openapi.yaml`: Plano arquitectónico y especificación estandarizada de OpenAPI. Define las rutas, parámetros y respuestas requeridas para estructurar la interfaz interactiva de Swagger UI.
 
 #### src/config
 - `dbConnect.js`: Configuración y conexión a PostgreSQL.
@@ -123,6 +134,9 @@ Implementan la lógica de negocio y las consultas a la base de datos.
 #### src/sql
 - `setup.sql`: Creación de tablas y relaciones.
 - `seed.sql`: Datos iniciales de prueba.
+
+### src/index 
+- `index.js`: Configura de forma integral el esqueleto de la aplicación Express, integrando los traductores JSON, enrutadores de recursos, documentación Swagger y el middleware de errores global.
 
 #### Archivos raíz
 - `.env`: Variables de entorno locales.
