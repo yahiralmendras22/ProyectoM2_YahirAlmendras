@@ -1,7 +1,10 @@
 // Error Handler Middleware//
 
 function errorHandler(error, req, res, next) {
-    console.error(error);
+
+    if (process.env.NODE_ENV !== 'test') {
+        console.error(error);
+    }
 
     if (error.type === 'entity.parse.failed') {
         return res.status(400).json({
