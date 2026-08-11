@@ -9,6 +9,13 @@ servers:
   - url: http://localhost:3000
     description: Servidor de Desarrollo Local
 
+tags:
+  - name: authors
+    description: Operaciones relativas a la gestión de autores
+  - name: posts
+    description: Operaciones relativas a la gestión de publicaciones
+
+
 paths:
   /health:
     get:
