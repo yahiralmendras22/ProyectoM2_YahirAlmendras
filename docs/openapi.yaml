@@ -16,6 +16,23 @@ tags:
     description: Operaciones sobre posts
 
 paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: API funcionando correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  timestamp:
+                    type: string
+
+paths:
   /authors:
     get:
       summary: Obtener todos los autores
