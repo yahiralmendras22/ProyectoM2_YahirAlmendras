@@ -21,7 +21,7 @@ Sigue estos pasos para clonar el repositorio y levantar el servidor en tu entorn
 ### 1. Clonar el repositorio
 ```bash
 git clone https://github.com/yahiralmendras22/ProyectoM2_YahirAlmendras
-cd TU_REPOSITORIO
+cd ProyectoM2_YahirAlmendras
 ```
 
 ### 2. Instalar dependencias
