@@ -3,7 +3,6 @@ const { Pool } = require('pg');
 const configPool = process.env.DATABASE_URL 
     ? { 
         connectionString: process.env.DATABASE_URL,
-        // Habilita SSL obligatorio para servidores en la nube
         ssl: {
             rejectUnauthorized: false
         }
@@ -19,5 +18,11 @@ const configPool = process.env.DATABASE_URL
 
 const pool = new Pool(configPool); 
 
+// Agrego esto para evitar que tu servidor se caiga ante un microcorte en la nube
+pool.on("error", (err) => {
+  console.error("Error inesperado en el pool de PostgreSQL:", err);
+});
+
 module.exports = { pool };
+
 
