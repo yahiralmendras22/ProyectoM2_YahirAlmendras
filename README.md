@@ -9,9 +9,36 @@ Esta es una API REST desarrollada con Node.js y Express.js, utilizando PostgreSQ
 - **Entorno de ejecución:** Node.js
 - **Framework Web:** Express.js
 - **Base de Datos:** PostgreSQL
-* **Driver de Conexión:** `pg` (Pool con soporte nativo de SSL y manejo de eventos)
+- **Testing:** Jest y Supertest
+- **Driver de Conexión:** `pg` (Pool con soporte nativo de SSL y manejo de eventos)
 - **Documentación de la API:** Swagger UI
 - **Despliegue:** Railway
+
+---
+## Modelo de datos
+
+**authors**: `id`, `name` (requerido), `email` (requerido, único), `bio`, `created_at`
+**posts**: `id`, `author_id` (FK → authors.id), `title` (requerido), `content` (requerido), `published`, `created_at`
+
+## Endpoints
+
+### Authors
+- `GET /authors` - Listar todos los autores
+- `GET /authors/:id` - Obtener un autor específico
+- `POST /authors` - Crear un nuevo autor
+- `PUT /authors/:id` - Actualizar un autor existente
+- `DELETE /authors/:id` - Eliminar un autor
+
+### Posts
+- `GET /posts` - Listar todos los posts
+- `GET /posts/:id` - Obtener un post específico
+- `GET /posts/author/:authorId` - Obtener posts de un autor (con detalle del autor)
+- `POST /posts` - Crear un nuevo post
+- `PUT /posts/:id` - Actualizar un post existente
+- `DELETE /posts/:id` - Eliminar un post
+
+### health
+- `GET /health` - Para verifica
 
 ---
 
@@ -68,7 +95,29 @@ El servidor local correrá normalmente en `http://localhost:3000`.
 
 ---
 
-## Estructura del proyecto
+## 🧪 Testing
+ 
+Para ejecutar la suite de tests (Jest + Supertest):
+ 
+```bash
+npm test
+```
+ 
+---
+ 
+## 📖 Documentación OpenAPI en local
+ 
+Con el servidor local corriendo (`npm run dev` o `npm start`), la documentación interactiva de Swagger UI está disponible en:
+ 
+```
+http://localhost:3000/api-docs
+```
+ 
+Desde ahí también podés cambiar el servidor activo (local o producción) usando el selector **Servers** en la parte superior de la página.
+ 
+---
+
+## 📂 Estructura del proyecto
 
 ```text
 ProyectoM2-YahirAlmendras/
@@ -150,12 +199,26 @@ Implementan la lógica de negocio y las consultas a la base de datos.
 ---
 
 ## 🚀 Despliegue en Producción
-
-El proyecto se encuentra alojado y desplegado de manera continua.
-
-- **URL Base de la API:** https://proyectom2yahiralmendras-production.up.railway.app/api-docs/
-
+ 
+El proyecto está desplegado en Railway con despliegue continuo: cada push a la rama principal del repositorio dispara un nuevo build y deploy automáticamente.
+ 
+### Variables de entorno necesarias en Railway
+ 
+```env
+DATABASE_URL=postgres://usuario:contraseña@host:puerto/nombre_bd
+PORT=8080
+```
+ 
+Railway provee `DATABASE_URL` automáticamente al conectar un servicio de Postgres al proyecto, junto con dos formas de acceso a la base:
+ 
+- **URL interna** (`postgres.railway.internal`): usada para la comunicación entre servicios dentro de la misma red privada de Railway. Más rápida, pero solo accesible desde otros servicios del mismo proyecto.
+- **URL pública** (mediante el TCP Proxy, con host tipo `*.proxy.rlwy.net` y un puerto distinto al 5432): usada para conectarse a la base desde fuera de Railway (por ejemplo, desde tu máquina local con pgAdmin o `psql`).
+### URLs de producción
+ 
+- **URL Base de la API:** https://proyectom2yahiralmendras-production.up.railway.app
+- **Documentación interactiva (Swagger UI):** https://proyectom2yahiralmendras-production.up.railway.app/api-docs/
 ---
+ 
 
 ## ✒️ Autor
 
