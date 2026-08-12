@@ -18,8 +18,9 @@ async function initializeDatabase() {
         console.log('¡Tablas creadas con éxito!');
     } catch (error) {
         console.error('Error al inicializar la base de datos:', error.message);
+    } finally {
+        await pool.end();
     }
-    // No cerramos el pool aquí para que Express pueda seguir usándolo inmediatamente
 }
 
 initializeDatabase();
