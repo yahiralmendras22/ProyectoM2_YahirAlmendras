@@ -10,6 +10,6 @@ const app = require('./src/index.js');
 // Si process.env.PORT existe (gracias al .env local o a Railway), usará ese. Si no, usará 3000.
 const PORT = process.env.PORT || 3000; 
 
-app.listen(PORT, '0.0.0.0', () => {
+app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
