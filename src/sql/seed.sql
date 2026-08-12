@@ -2,7 +2,6 @@
 -- Ejecutar después de setup.sql
  
 -- Limpia las tablas antes de insertar (respeta el orden por las FK)
-TRUNCATE TABLE comments RESTART IDENTITY CASCADE;
 TRUNCATE TABLE posts RESTART IDENTITY CASCADE;
 TRUNCATE TABLE authors RESTART IDENTITY CASCADE;
  
