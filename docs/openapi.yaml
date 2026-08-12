@@ -14,11 +14,14 @@ tags:
     description: Operaciones relativas a la gestión de autores
   - name: posts
     description: Operaciones relativas a la gestión de publicaciones
-
+  - name: system
+    description: Verificación del estado del servidor
 
 paths:
   /health:
     get:
+      tags:
+        - system
       summary: Health check
       responses:
         "200":
@@ -32,8 +35,11 @@ paths:
                     type: string
                   timestamp:
                     type: string
+
   /authors:
     get:
+      tags:
+        - authors
       summary: Listar autores
       responses:
         "200":
@@ -45,6 +51,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/Author"
     post:
+      tags:
+        - authors
       summary: Crear autor
       requestBody:
         required: true
@@ -61,8 +69,11 @@ paths:
                 $ref: "#/components/schemas/Author"
         "400":
           description: Datos inválidos o email duplicado
+
   /authors/{id}:
     get:
+      tags:
+        - authors
       summary: Obtener autor por ID
       parameters:
         - in: path
@@ -80,6 +91,8 @@ paths:
         "404":
           description: Autor no encontrado
     put:
+      tags:
+        - authors
       summary: Actualizar autor
       parameters:
         - in: path
@@ -103,6 +116,8 @@ paths:
         "404":
           description: Autor no encontrado
     delete:
+      tags:
+        - authors
       summary: Eliminar autor
       parameters:
         - in: path
@@ -115,8 +130,11 @@ paths:
           description: Autor eliminado
         "404":
           description: Autor no encontrado
+
   /posts:
     get:
+      tags:
+        - posts
       summary: Listar posts
       responses:
         "200":
@@ -128,6 +146,8 @@ paths:
                 items:
                   $ref: "#/components/schemas/Post"
     post:
+      tags:
+        - posts
       summary: Crear post
       requestBody:
         required: true
@@ -144,8 +164,11 @@ paths:
                 $ref: "#/components/schemas/Post"
         "400":
           description: Datos inválidos o autor inexistente
+
   /posts/{id}:
     get:
+      tags:
+        - posts
       summary: Obtener post por ID
       parameters:
         - in: path
@@ -159,10 +182,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Post"
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
         "404":
           description: Post no encontrado
     put:
+      tags:
+        - posts
       summary: Actualizar post
       parameters:
         - in: path
@@ -186,6 +213,8 @@ paths:
         "404":
           description: Post no encontrado
     delete:
+      tags:
+        - posts
       summary: Eliminar post
       parameters:
         - in: path
@@ -198,8 +227,11 @@ paths:
           description: Post eliminado
         "404":
           description: Post no encontrado
+
   /posts/author/{authorId}:
     get:
+      tags:
+        - posts
       summary: Listar posts por autor
       parameters:
         - in: path
@@ -216,6 +248,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Post"
+
 components:
   schemas:
     Author:
