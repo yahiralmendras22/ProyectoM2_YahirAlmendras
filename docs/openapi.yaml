@@ -80,7 +80,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Autor encontrado
@@ -88,6 +88,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Author"
+        "400":
+          description: ID inválido o formato incorrecto
         "404":
           description: Autor no encontrado
     put:
@@ -99,7 +101,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         required: true
         content:
@@ -113,6 +115,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Author"
+        "400":
+          description: ID inválido o datos de actualización incorrectos
         "404":
           description: Autor no encontrado
     delete:
@@ -124,10 +128,12 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "204":
           description: Autor eliminado
+        "400":
+          description: ID inválido o formato incorrecto
         "404":
           description: Autor no encontrado
 
@@ -175,7 +181,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Post encontrado
@@ -185,6 +191,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Post"
+        "400":
+          description: ID inválido o formato incorrecto
         "404":
           description: Post no encontrado
     put:
@@ -196,7 +204,7 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       requestBody:
         required: true
         content:
@@ -210,6 +218,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Post"
+        "400":
+          description: ID inválido o datos de actualización incorrectos
         "404":
           description: Post no encontrado
     delete:
@@ -221,10 +231,12 @@ paths:
           name: id
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "204":
           description: Post eliminado
+        "400":
+          description: ID inválido o formato incorrecto
         "404":
           description: Post no encontrado
 
@@ -238,7 +250,7 @@ paths:
           name: authorId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         "200":
           description: Posts del autor
@@ -248,6 +260,8 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Post"
+        "400":
+          description: ID de autor inválido o formato incorrecto
 
 components:
   schemas:
