@@ -16,6 +16,14 @@ app.use(
 // Middleware para entender JSON
 app.use(express.json());
 
+// Ruta de salud
+app.get('/health', (req, res) => {
+    res.status(200).json({
+        status: 'OK',
+        message: 'API funcionando correctamente'
+    });
+});
+
 // Rutas
 const authorsRouter = require('./routes/authorsRoutes');
 const postsRouter = require('./routes/postsRoutes');
