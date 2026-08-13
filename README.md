@@ -219,6 +219,18 @@ Railway provee `DATABASE_URL` automáticamente al conectar un servicio de Postgr
 - **Documentación interactiva (Swagger UI):** https://proyectom2yahiralmendras-production.up.railway.app/api-docs/
 ---
  
+## 🤖 Uso de AI (Artificial Intelligence)
+
+Durante el desarrollo trabaje con Clauda AI y ChatGPT como herramienta en estas cosas:
+
+- Ordenamiento en la arquitectura y diseño de la base datos.
+- Generar la documentacion OpenApi.
+- Analizar y corregir errores de codigo.
+- Ayuda en resolver inconvenientes con el deployment en Railway.
+- Ayuda con la creación de jest y supertest.
+
+
+---
 
 ## ✒️ Autor
 
