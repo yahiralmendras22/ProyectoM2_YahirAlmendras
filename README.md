@@ -231,6 +231,7 @@ Durante el desarrollo trabaje con Clauda AI y ChatGPT como herramienta en estas 
 
 👉 [Ver Carpeta de Documentación Captura de AI](./documentación)
 
+- ✖️Error mio en el cual no haber echo capturas antes en la computadora hubieron preguntas a la ia que no se me guardo en el historial. (a mejorar esto)
 ---
 
 ## ✒️ Autor
