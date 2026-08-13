@@ -125,6 +125,9 @@ ProyectoM2-YahirAlmendras/
 ├── docs/
 │   └── openapi.yaml          
 │
+├── documentación/
+│   └── captura de pantalla del 1 al 18
+│  
 ├── src/
 │   ├── config/
 │   │   ├── dbConnect.js      
@@ -160,6 +163,9 @@ ProyectoM2-YahirAlmendras/
 ```
 
 ### Descripción de carpetas y archivos
+
+### Documentación
+- `imagenes`: Varias capturas de pantalla como prueba en cual se trabajo o realizo ayuda a la AI.
 
 #### docs
 - `openapi.yaml`: Plano arquitectónico y especificación estandarizada de OpenAPI. Define las rutas, parámetros y respuestas requeridas para estructurar la interfaz interactiva de Swagger UI.
