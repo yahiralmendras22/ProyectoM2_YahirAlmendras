@@ -229,7 +229,7 @@ Durante el desarrollo trabaje con Clauda AI y ChatGPT como herramienta en estas 
 - Ayuda en resolver inconvenientes con el deployment en Railway.
 - Ayuda con la creación de jest y supertest.
 
-👉 [Ver Carpeta de Documentación](./documentación)
+👉 [Ver Carpeta de Documentación Captura de AI](./documentación)
 
 ---
 
